@@ -600,6 +600,16 @@ input {
   color: var(--gray);
 }
 
+/* ⅓ 分割寬度下三個圖例排不進一行，改為可換行，避免最後一項被擠掉。
+   At ⅓ split width the three legend items do not fit on one line, so the row is
+   allowed to grow rather than pushing the last one out of sight. */
+.compact .ftm-legend {
+  height: auto;
+  min-height: 38px;
+  padding: 7px 10px;
+  gap: 8px 16px;
+}
+
 .dot { flex: 0 0 auto; border-radius: 50%; }
 .dot-8 { width: 8px; height: 8px; }
 .dot-9 { width: 9px; height: 9px; }
