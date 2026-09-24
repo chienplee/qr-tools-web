@@ -151,6 +151,7 @@ var QRHost = (function () {
     embedded: false,
     openTool: null,
     openDoc: false,
+    altSource: null,
     docBase: null,
     showInternal: false,
     host: 'standalone'
@@ -185,6 +186,14 @@ var QRHost = (function () {
     /* ?doc=1 隨即開啟該工具的參考文件（示範與截圖用）。
        ?doc=1 then opens that tool's reference document, for demos and screenshots. */
     settings.openDoc = String(pick('doc', '0')) === '1';
+
+    /* 宿主若允許切換來源，會傳 alt=bundle|network（另一個來源）。沒有傳就不顯示
+       切換鈕——例如在一般瀏覽器裡，本來就沒有 App 內建的那一份可切。
+       A host that allows the source to be switched passes alt=bundle|network, naming
+       the other one. Without it no switch is shown — in an ordinary browser, for
+       instance, there is no copy inside an app to switch to. */
+    var alt = pick('alt', null);
+    settings.altSource = (alt === 'bundle' || alt === 'network') ? alt : null;
 
     applyTheme(pick('theme', null));
     applyScale(pick('scale', 1));

@@ -948,3 +948,13 @@ input {
   letter-spacing: 0.03em;
 }
 .statusbar .grow { flex: 1; }
+.statusbar-switch {
+  font-family: var(--font-ops);
+  font-size: var(--f11);
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  border: 1px solid var(--field-border);
+  padding: 2px 8px;
+  background: var(--card-bg);
+}
+.statusbar-switch:active { background: var(--muted-fill); }

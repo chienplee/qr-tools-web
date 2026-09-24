@@ -131,11 +131,30 @@
       var status = el('div', 'statusbar');
       status.appendChild(el('span', null, 'QR TOOLS ' + S.version + ' · ' + S.built));
       status.appendChild(el('span', 'grow'));
-      status.appendChild(el('span', null, S.embedded ? 'IN-APP' : 'WEB'));
+      // 目前這一份是從哪裡來的：自訂 scheme／file 代表 App 內建（離線可用），
+      // http(s) 代表從網路取得。
+      // Where this copy came from: a custom scheme or file means it is carried in the
+      // app and usable offline; http(s) means it came over the network.
+      status.appendChild(el('span', null, S.embedded ? 'OFFLINE COPY' : 'ONLINE COPY'));
+      if (S.altSource) { status.appendChild(sourceSwitch(S.altSource)); }
       root.appendChild(status);
     }
 
     root.hidden = false;
+  }
+
+  /* 來源切換鈕。就地導向 ?source=<target>：宿主會攔下這個導向、切換來源並取消它，
+     因此不需要 JavaScript bridge，網頁也不必知道另一份放在哪裡。
+     The source switch. It navigates in place to ?source=<target>; the host intercepts
+     that navigation, changes the source and cancels it. No JavaScript bridge is needed,
+     and the page never has to know where the other copy lives. */
+  function sourceSwitch(target) {
+    var btn = el('button', 'statusbar-switch',
+                 target === 'bundle' ? 'USE OFFLINE COPY' : 'USE ONLINE COPY');
+    btn.addEventListener('click', function () {
+      window.location.search = '?source=' + target;
+    });
+    return btn;
   }
 
   function sectionBar(text) {
