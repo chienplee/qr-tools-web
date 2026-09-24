@@ -1,0 +1,22 @@
+{
+  "name": "OpsBag QR & LINKS tools",
+  "version": "1.0.0",
+  "built": "2026-09-24",
+  "minHostVersion": "2.0",
+  "entry": "index.html",
+  "files": [
+    "index.html",
+    "qr-tools.css",
+    "qr-data.js",
+    "qr-host.js",
+    "qr-app.js"
+  ],
+  "tools": [
+    "ftMeter",
+    "temCard",
+    "runwayChanges",
+    "handover",
+    "holdingSpeed"
+  ],
+  "notes": "Version record for EFB configuration control. The host reads this file to decide whether a newer copy of the tools is available than the one shipped in the application bundle; the version shown in the page footer is the copy actually running."
+}

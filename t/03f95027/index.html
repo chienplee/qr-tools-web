@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  index.html
+  OpsBagV2 — QR & LINKS (web build)
+
+  Author: Peter Lee
+  Email: peterlee@evaair.com
+  Date: 2026-09-24
+
+  QR & LINKS 工具的網頁版本，供 V1（UIKit）以 WKWebView 內嵌使用。
+  頁面完全自給自足：不需要宿主 App 提供 JavaScript bridge，離線可用，
+  外觀跟隨宿主的淺色／深色設定。
+
+  Web build of the QR & LINKS tools, made to be embedded by the V1 (UIKit)
+  application in a WKWebView. The page is entirely self-contained: it needs no
+  JavaScript bridge from the host, runs with no network, and follows the host's
+  light / dark appearance on its own.
+
+  Host integration is documented in WebTools/version.json and in the vendor
+  integration note; in short, the host only has to point a WKWebView at this
+  file (or at the hosted URL) and implement WKUIDelegate so that links opened
+  with target="_blank" are given a web view to load into.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+<meta name="color-scheme" content="light dark">
+<title>QR &amp; LINKS</title>
+<link rel="stylesheet" href="qr-tools.css">
+</head>
+<body>
+<div id="root" class="root" hidden></div>
+<div id="gate" class="gate" hidden>
+  <div class="gate-box">
+    <div class="gate-title">QR &amp; LINKS</div>
+    <div class="gate-note" id="gate-note">Access key required.</div>
+  </div>
+</div>
+<script src="qr-data.js"></script>
+<script src="qr-host.js"></script>
+<script src="qr-app.js"></script>
+</body>
+</html>
