@@ -738,6 +738,18 @@
     document.getElementById('gate').hidden = false;
     document.getElementById('gate-note').textContent =
       'Open the link issued by Flight Operations.';
+    // 擋板插圖只放在對外託管的那一份（見 Docs/QRToolsWeb/gate/），App 內建版本沒有
+    // 這個檔案，也永遠不會走到擋板。載不到就維持原本的文字。
+    // The gate artwork ships only with the hosted copy (see Docs/QRToolsWeb/gate/).
+    // The copy inside the app has no such file and never reaches the gate anyway.
+    // If it does not load, the plain wording stands.
+    var art = document.getElementById('gate-art');
+    art.onload = function () {
+      art.hidden = false;
+      document.getElementById('gate-title').hidden = true;
+    };
+    art.onerror = function () { art.hidden = true; };
+    art.src = 'denied.jpg';
   } else {
     buildShell();
     window.addEventListener('resize', function () {
