@@ -150,6 +150,7 @@ var QRHost = (function () {
     chrome: true,
     embedded: false,
     openTool: null,
+    openDoc: false,
     docBase: null,
     showInternal: false,
     host: 'standalone'
@@ -181,6 +182,9 @@ var QRHost = (function () {
     /* ?tool=<id> 直接開啟指定工具。 Opens one tool straight away. */
     var wanted = pick('tool', null);
     settings.openTool = wanted ? String(wanted) : null;
+    /* ?doc=1 隨即開啟該工具的參考文件（示範與截圖用）。
+       ?doc=1 then opens that tool's reference document, for demos and screenshots. */
+    settings.openDoc = String(pick('doc', '0')) === '1';
 
     applyTheme(pick('theme', null));
     applyScale(pick('scale', 1));

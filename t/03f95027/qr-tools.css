@@ -331,13 +331,18 @@ input {
 .compact .row-title { white-space: normal; overflow: visible; }
 
 /* ---- Tool modal (the production centred card; full-pane when compact) ---- */
+/* 原生版的工具卡片上下留白 34pt，但那是從畫面最上緣算起、連標題列一起蓋住；
+   網頁只擁有標題列以下的區域，因此留白收小，讓卡片實際高度與原生一致。
+   The native card insets by 34pt from the top of the whole screen, covering the
+   title bar with it. The page only owns the area below that bar, so the inset is
+   smaller here — which lands the card at the same actual height as the native one. */
 .modal-scrim {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: stretch;
   justify-content: center;
-  padding: 34px 0;
+  padding: 16px 0;
   background: var(--scrim);
   z-index: 40;
 }

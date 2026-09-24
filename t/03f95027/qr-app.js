@@ -743,7 +743,15 @@
     // 宿主可用 ?tool=<id> 直接開啟某個工具（示範與截圖用）。
     // A host may open one tool directly with ?tool=<id> (used for demos and for
     // capturing screenshots without touching the screen).
-    if (S.openTool) { openTool(S.openTool); }
+    if (S.openTool) {
+      openTool(S.openTool);
+      if (S.openDoc) {
+        window.setTimeout(function () {
+          var ref = overlay && overlay.querySelector('a.modal-ref');
+          if (ref) { ref.click(); }
+        }, 600);
+      }
+    }
     QRHost.post('ready', { tools: D.tools.map(function (t) { return t.id; }) });
   }
 
